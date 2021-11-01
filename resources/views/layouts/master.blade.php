@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Aplikasi Manajemen Surat</title>
+    <title>Management Referral Code</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -31,7 +31,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
-                <h3 class="font-weight-bold">APLIKASI MANAJEMEN SURAT</h3>
+                <h3 class="font-weight-bold">Management Referral Code</h3>
             </ul>
 
             <!-- Right navbar links -->
@@ -82,6 +82,41 @@
                                     Beranda
                                 </p>
                             </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-mail-bulk"></i>
+                                <p>
+                                    Referral Code
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/referral/create" class="nav-link">
+                                        <i class="far fa-envelope nav-icon"></i>
+                                        <p>Generate Referral Code</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/referral/index" class="nav-link">
+                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <p>Management Code Promo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/referralagent/index" class="nav-link">
+                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <p>Management Agent Internal</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/referralext/index" class="nav-link">
+                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <p>Management Agent External Promo</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -201,10 +236,10 @@
         <!-- /.content-wrapper -->
 
         <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
+            {{-- <div class="float-right d-none d-sm-block">
                 <b>Teknik Informatika Unirow Tuban</b>
             </div>
-            Copyright &copy; 2020 | by : Qkoh St, Iqbal, Afif
+            Copyright &copy; 2020 | by : Qkoh St, Iqbal, Afif --}}
         </footer>
 
         <!-- Control Sidebar -->

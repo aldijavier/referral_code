@@ -38,6 +38,52 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
     Route::get('/suratmasuk.agendamasukdownload_excel', 'SuratMasukController@agendamasukdownload_excel')->name('suratmasuk.downloadexcel');
     Route::get('/suratmasuk/galeri','SuratMasukController@galeri');
 
+    // referral 
+    Route::get('/referral','ReferralController@index');
+    Route::get('/referral/index','ReferralController@index');
+    Route::get('/referral/create','ReferralController@create');
+    Route::post('/referral/tambah','ReferralController@tambah');
+    Route::get('/json-lantai', 'ReferralController@lantai')->name('jsonLantai');
+    Route::get('/suratmasuk/{id}/tampil','SuratMasukController@tampil');
+    Route::get('viewAlldownloadfile','SuratMasukController@downfunc');
+    Route::get('/suratmasuk/{id}/edit','SuratMasukController@edit');
+    Route::post('/suratmasuk/{id}/update','SuratMasukController@update');
+    Route::get('/suratmasuk/{id}/delete','SuratMasukController@delete');
+    Route::get('/suratmasuk/agenda','SuratMasukController@agenda');
+    Route::get('/suratmasuk/agendamasukcetak_pdf', 'SuratMasukController@agendamasukcetak_pdf');
+    Route::get('/suratmasuk.agendamasukdownload_excel', 'SuratMasukController@agendamasukdownload_excel')->name('suratmasuk.downloadexcel');
+    Route::get('/suratmasuk/galeri','SuratMasukController@galeri');
+
+    // referral agent
+    Route::get('/referralagent','ReferralAgentController@index');
+    Route::get('/referralagent/index','ReferralAgentController@index');
+    Route::get('/referralagent/create','ReferralAgentController@create');
+    Route::post('/referralagent/tambah','ReferralAgentController@tambah');
+    Route::get('/suratmasuk/{id}/tampil','SuratMasukController@tampil');
+    Route::get('viewAlldownloadfile','SuratMasukController@downfunc');
+    Route::get('/suratmasuk/{id}/edit','SuratMasukController@edit');
+    Route::post('/suratmasuk/{id}/update','SuratMasukController@update');
+    Route::get('/suratmasuk/{id}/delete','SuratMasukController@delete');
+    Route::get('/suratmasuk/agenda','SuratMasukController@agenda');
+    Route::get('/suratmasuk/agendamasukcetak_pdf', 'SuratMasukController@agendamasukcetak_pdf');
+    Route::get('/suratmasuk.agendamasukdownload_excel', 'SuratMasukController@agendamasukdownload_excel')->name('suratmasuk.downloadexcel');
+    Route::get('/suratmasuk/galeri','SuratMasukController@galeri');
+
+    // referral ext
+    Route::get('/referralext','ReferralExtController@index');
+    Route::get('/referralext/index','ReferralExtController@index');
+    Route::get('/referralext/create','ReferralExtController@create');
+    Route::post('/referralext/tambah','ReferralExtController@tambah');
+    Route::get('/suratmasuk/{id}/tampil','SuratMasukController@tampil');
+    Route::get('viewAlldownloadfile','SuratMasukController@downfunc');
+    Route::get('/suratmasuk/{id}/edit','SuratMasukController@edit');
+    Route::post('/suratmasuk/{id}/update','SuratMasukController@update');
+    Route::get('/suratmasuk/{id}/delete','SuratMasukController@delete');
+    Route::get('/suratmasuk/agenda','SuratMasukController@agenda');
+    Route::get('/suratmasuk/agendamasukcetak_pdf', 'SuratMasukController@agendamasukcetak_pdf');
+    Route::get('/suratmasuk.agendamasukdownload_excel', 'SuratMasukController@agendamasukdownload_excel')->name('suratmasuk.downloadexcel');
+    Route::get('/suratmasuk/galeri','SuratMasukController@galeri');
+
     Route::get('/suratkeluar', 'SuratKeluarController@index');
     Route::get('/suratkeluar/index','SuratKeluarController@index');
     Route::get('/suratkeluar/create','SuratKeluarController@create');
