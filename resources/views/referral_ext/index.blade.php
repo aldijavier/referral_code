@@ -15,7 +15,7 @@
             </div>
             <div>
                 <div class="col">
-                    <a class="btn btn-primary btn-sm my-1 mr-sm-1" href="create" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
+                    <a class="btn btn-primary btn-sm my-1 mr-sm-1" href="/referral/create" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
                     <br>
                 </div>
             </div>
@@ -65,9 +65,9 @@
                             </td>
                             {{-- <td>{{$suratkeluar->keterangan}}</td> --}}
                             <td>
-                                <a href="/suratkeluar/{{$suratkeluar->id}}/edit" class="btn btn-primary btn-sm my-1 mr-sm-1 btn-block"><i class="nav-icon fas fa-pencil-alt"></i> Edit</a>
+                                <a href="/referralext/{{$suratkeluar->id}}/edit" class="btn btn-primary btn-sm my-1 mr-sm-1 btn-block"><i class="nav-icon fas fa-pencil-alt"></i> Edit</a>
                                 @if (auth()->user()->role == 'admin')
-                                <a href="/suratkeluar/{{$suratkeluar->id}}/delete" class="btn btn-danger btn-sm my-1 mr-sm-1 btn-block" onclick="return confirm('Hapus Data ?')"><i class="nav-icon fas fa-trash"></i> Hapus</a>
+                                <a href="/referralext/{{$suratkeluar->id}}/delete" class="btn btn-danger btn-sm my-1 mr-sm-1 btn-block" onclick="return confirm('Hapus Data ?')"><i class="nav-icon fas fa-trash"></i> Hapus</a>
                                 @endif
                             </td>
                         </tr>

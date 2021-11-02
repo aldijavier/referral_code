@@ -118,7 +118,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
+                        {{-- <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-mail-bulk"></i>
                                 <p>
@@ -194,7 +194,7 @@
                                     Klasifikasi
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         @if (auth()->user()->role == 'admin')
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -205,12 +205,12 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('instansi.index') }}" class="nav-link">
                                         <i class="fas fa-warehouse nav-icon"></i>
                                         <p>Manajemen Instansi</p>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a href="{{ route('pengguna.index') }}" class="nav-link">
                                         <i class="fas fa-users-cog nav-icon"></i>

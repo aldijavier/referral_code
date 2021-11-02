@@ -73,7 +73,7 @@
         </tbody>
     </table>
     <footer>
-        Aplikasi Manajemen Surat | Copyright &copy; <?php echo date("d-m-Y");?>
+        Management Referral Code | Copyright &copy; <?php echo date("d-m-Y");?>
     </footer>
 </body>
 

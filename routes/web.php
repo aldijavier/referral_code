@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
     Route::get('/referral/create','ReferralController@create');
     Route::post('/referral/tambah','ReferralController@tambah');
     Route::get('/json-lantai', 'ReferralController@lantai')->name('jsonLantai');
+    Route::get('/referral/{id}/edit','ReferralController@edit');
+    Route::post('/referral/{id}/update','ReferralController@update');
+    Route::get('/referral/{id}/delete','ReferralController@delete');
     Route::get('/suratmasuk/{id}/tampil','SuratMasukController@tampil');
     Route::get('viewAlldownloadfile','SuratMasukController@downfunc');
     Route::get('/suratmasuk/{id}/edit','SuratMasukController@edit');
@@ -59,6 +62,9 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
     Route::get('/referralagent/index','ReferralAgentController@index');
     Route::get('/referralagent/create','ReferralAgentController@create');
     Route::post('/referralagent/tambah','ReferralAgentController@tambah');
+    Route::get('/referralagent/{id}/edit','ReferralAgentController@edit');
+    Route::post('/referralagent/{id}/update','ReferralAgentController@update');
+    Route::get('/referralagent/{id}/delete','ReferralAgentController@delete');
     Route::get('/suratmasuk/{id}/tampil','SuratMasukController@tampil');
     Route::get('viewAlldownloadfile','SuratMasukController@downfunc');
     Route::get('/suratmasuk/{id}/edit','SuratMasukController@edit');
@@ -74,11 +80,11 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
     Route::get('/referralext/index','ReferralExtController@index');
     Route::get('/referralext/create','ReferralExtController@create');
     Route::post('/referralext/tambah','ReferralExtController@tambah');
+    Route::get('/referralext/{id}/edit','ReferralExtController@edit');
+    Route::post('/referralext/{id}/update','ReferralExtController@update');
+    Route::get('/referralext/{id}/delete','ReferralExtController@delete');
     Route::get('/suratmasuk/{id}/tampil','SuratMasukController@tampil');
     Route::get('viewAlldownloadfile','SuratMasukController@downfunc');
-    Route::get('/suratmasuk/{id}/edit','SuratMasukController@edit');
-    Route::post('/suratmasuk/{id}/update','SuratMasukController@update');
-    Route::get('/suratmasuk/{id}/delete','SuratMasukController@delete');
     Route::get('/suratmasuk/agenda','SuratMasukController@agenda');
     Route::get('/suratmasuk/agendamasukcetak_pdf', 'SuratMasukController@agendamasukcetak_pdf');
     Route::get('/suratmasuk.agendamasukdownload_excel', 'SuratMasukController@agendamasukdownload_excel')->name('suratmasuk.downloadexcel');

@@ -23,44 +23,101 @@
             {{csrf_field()}}
             <div class="row">
                 <div class="col-6">
-                    <label for="nomorsurat">Nomor Surat</label>
-                    <input name="no_surat" type="text" class="form-control bg-light" id="nomorsurat"
-                        placeholder="Nomor Surat" value="{{$suratkeluar->no_surat}}" required>
-                    <label for="asalsurat">Tujuan Surat</label>
-                    <input name="tujuan_surat" type="text" class="form-control bg-light" id="tujuansurat"
-                        placeholder="Tujuan Surat" value="{{$suratkeluar->tujuan_surat}}" required>
-                    <label for="isisurat">Isi Ringkas</label>
-                    <textarea name="isi" class="form-control bg-light" id="isisurat" rows="3"
-                        placeholder="Isi Ringkas Surat Keluar" value="{{$suratkeluar->isi}}"
-                        required>{{$suratkeluar->isi}}</textarea>
-                    <label for="kode">Kode Klasifikasi</label>
-                    <select name="kode" class="custom-select my-1 mr-sm-2 bg-light" id="kode"
-                        value="{{$suratkeluar->kode}}" required>
-                        <option selected>{{$suratkeluar->kode}}</option>
-                        @foreach($data_klasifikasi as $klasifikasi)
-                        <option value="{{$klasifikasi->kode}}">{{$klasifikasi->nama}} ( {{$klasifikasi->kode}} )
-                        </option>
-                        @endforeach
+                    <label for="nomorsurat">Referal For</label>
+                    <select name="referral_for" value="" id="referral_for" data-live-search=true class="form-control selectpicker show-tick show-menu-arrow">
+                        @if($suratkeluar->referral_for == 3)
+                        <option value="{{$suratkeluar->referral_for}}" selected>Agent Code External</option>
+                        <option value=1
+                            {{ old('referral_for') == 1 ? 'selected' : '' }}>
+                            Promo Code</option>
+                        <option value=2
+                            {{ old('referral_for') == 2 ? 'selected' : '' }}>Agent Code Internal</option>
+                        @else
+                        <option value="">Select Referral For</option>
+                        <option value=1
+                            {{ old('referral_for') == 1 ? 'selected' : '' }}>
+                            Promo Code</option>
+                        <option value=2
+                            {{ old('referral_for') == 2 ? 'selected' : '' }}>Agent Code Internal</option>
+                        <option value=3
+                            {{ old('referral_for') == 3 ? 'selected' : '' }}>Agent Code External</option>
+                            @endif
                     </select>
+                    <div id="regenciesz">
+                        <label for="regencies" style="margin-top:10px;">Regencies</label>
+                        <select class="form-control" value="{{$suratkeluar->regencies}}" name="regencies" id="regencies"
+                            data-dependent="lantai">
+                            <option value="{{$suratkeluar->regencies}}" selected="true"> {{$suratkeluar->regencies}} </option>
+                        </select>
+                    </div>
+                    <label for="tglcatat" style="margin-top:10px;">End Date</label>
+                    <input value="{{$suratkeluar->end_date}}" name="end_date" type="date" class="form-control bg-light"
+                        id="tglcatat" required>
+                    <label for="isisurat" style="margin-top:10px;">Description</label>
+                    <textarea name="description" class="form-control bg-light" id="description" rows="3"
+                        placeholder="Fill description" required>{{$suratkeluar->description}}</textarea>
                 </div>
                 <div class="col-6">
-                    <label for="tglsurat">Tanggal Surat</label>
-                    <input name="tgl_surat" type="date" class="form-control bg-light" id="tglsurat"
-                        value="{{$suratkeluar->tgl_surat}}" required>
-                    <label for="tglditerima">Tanggal Catat</label>
-                    <input name="tgl_catat" type="date" class="form-control bg-light" id="tglcatat"
-                        value="{{$suratkeluar->tgl_catat}}" required>
-                    <label for="keterangan">Keterangan</label>
-                    <input name="keterangan" type="text" class="form-control bg-light" id="keterangan"
-                        placeholder="Keterangan" value="{{$suratkeluar->keterangan}}" required>
-                    <div class="form-group">
+                    <div id="provincez">
+                        <label for="province1">Province</label>
+                       <select value="{{$suratkeluar->province}}" name="province" id="province" class="custom-select  mr-sm-2 bg-light" id="inlineFormCustomSelectPref"
+                            >
+                            @foreach($data_klasifikasi as $klasifikasi)
+                            {{-- <option value="{{$suratkeluar->province}}">{{$klasifikasi->nama}}</option> --}}
+                            <option value="{{$klasifikasi->id}}">{{$klasifikasi->nama}} ( {{$klasifikasi->nama}} )
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <label for="tglcatat" style="margin-top:10px;">Start Date</label>
+                    <input value="{{$suratkeluar->start_date}}" name="start_date" type="date" class="form-control bg-light"
+                        id="tglcatat" required>
+                        <label for="status" style="margin-top:10px;">Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value=1>Active</option>
+                        <option value=2>Non Active</option>
+                    </select>
+                    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script type="text/javascript">
+                    console.log('asd');
+                    jQuery(document).ready(function ($) {
+                            console.log('das');
+                            // $("#regenciesz").closest("div").hide();
+                            $('#province').on('change', function (e) {
+                                // $("#regenciesz").closest("div").show();
+                                console.log('dss');
+                                console.log(e);
+                                console.log('2');
+                                var id_lokasi = e.target.value;
+                                $.get('{{ route('jsonLantai')}}?id=' + id_lokasi, function (data) {
+                                    console.log(data);
+                                    $('#regencies').empty();
+                                    $('#regencies').append(
+                                        '<option value="0" selected="true">Select Regencies</option>'
+                                    );
+        
+                                    $.each(data, function (index, lantaiObj) {
+                                        console.log(lantaiObj.name);
+                                        $('#regencies').append(
+                                            '<option value="' +
+                                            lantaiObj.name + '">' +
+                                            lantaiObj.initials + ' - ' +
+                                            lantaiObj.name +
+                                            '</option>');
+                                    })
+                                });
+                            });
+                        });
+                </script>
+                    {{-- <div class="form-group">
                         <label for="exampleFormControlFile1">File</label>
                         <input name="filekeluar" type="file" class="form-control-file" id="exampleFormControlFile1"
                             value="{{$suratkeluar->filekeluar}}">
                         <small id="exampleFormControlFile1" class="text-warning">
                             Pastikan file anda ( jpg,jpeg,png,doc,docx,pdf ) !!!
                         </small>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

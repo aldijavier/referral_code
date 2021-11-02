@@ -74,9 +74,9 @@ class ReferralExtController extends Controller
     //function untuk ke view edit
     public function edit ($id_suratkeluar)
     {
-        $data_klasifikasi = \App\Klasifikasi::all();
-        $suratkeluar = \App\SuratKeluar::find($id_suratkeluar);
-        return view('suratkeluar/edit',['suratkeluar'=>$suratkeluar],['data_klasifikasi'=>$data_klasifikasi]);
+        $data_klasifikasi = \App\Province::all();
+        $suratkeluar = \App\Referral_Ext::find($id_suratkeluar);
+        return view('referral_ext/edit',['suratkeluar'=>$suratkeluar],['data_klasifikasi'=>$data_klasifikasi]);
     }
     public function update (Request $request, $id_suratkeluar)
     {

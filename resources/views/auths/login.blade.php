@@ -105,8 +105,8 @@
         @endif
         <img src="/logo.svg" alt="Logo" class="logo">
         <br>
-        <h2 class="font-weight-bold text-center">Aplikasi</h2>
-        <h2 class="font-weight-bold text-center">Manajemen Surat</h2>
+        <h2 class="font-weight-bold text-center">Management</h2>
+        <h2 class="font-weight-bold text-center">Referral Code</h2>
 
         <form action="postlogin" method="POST">
             @csrf
