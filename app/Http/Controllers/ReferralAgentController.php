@@ -74,35 +74,97 @@ class ReferralAgentController extends Controller
     //function untuk ke view edit
     public function edit ($id_suratkeluar)
     {
-        $data_klasifikasi = \App\Klasifikasi::all();
-        $suratkeluar = \App\SuratKeluar::find($id_suratkeluar);
-        return view('suratkeluar/edit',['suratkeluar'=>$suratkeluar],['data_klasifikasi'=>$data_klasifikasi]);
+        $data_klasifikasi = \App\Province::all();
+        $suratkeluar = \App\Referral_Agent::find($id_suratkeluar);
+        return view('referral_agent/edit',['suratkeluar'=>$suratkeluar],['data_klasifikasi'=>$data_klasifikasi]);
     }
     public function update (Request $request, $id_suratkeluar)
     {
-        $request->validate([
-            'filekeluar' => 'mimes:jpg,jpeg,png,doc,docx,pdf',
-            'no_surat' => 'min:5',
-            'isi' => 'min:5',
-            'keterangan' => 'min:5',
-        ]);
-        $suratkeluar = \App\SuratKeluar::find($id_suratkeluar);
-        $suratkeluar->update($request->all());
-        //Untuk Update File
-        if($request->hasFile('filekeluar')){
-            $request->file('filekeluar')->move('datasuratkeluar/', 'suratKeluar-'. $request->file('filekeluar')->getClientOriginalName());
-            $suratkeluar->filekeluar = 'suratKeluar-'. $request->file('filekeluar')->getClientOriginalName();
-            $suratkeluar->save();
+        {
+            $request->validate([
+                 // 'filekeluar' => 'mimes:jpg,jpeg,png,doc,docx,pdf',
+                 'tujuansurat' => 'unique:suratkeluar|max:15',
+                 // 'isi' => 'min:5',
+                 // 'keterangan' => 'min:5',
+            ]);
+     
+            // new Form
+            if($request->referral_for == 1) {
+             $suratkeluar = \App\Referral_Ext::find($id_suratkeluar);
+             $referral = new Referral_Ext($request->all());
+     
+             // $plan->createdBy()->associate(Auth::user());
+             // $plan->updatedBy()->associate(Auth::user());
+     
+             $referral->save();
+     
+             return redirect('/referral/index')->with("sukses", "Data Promo Code Berhasil Ditambahkan");
+     
+             return redirect('referral/index');
+             } else if($request->referral_for == 2){
+                $referral = \App\Referral_Agent::find($id_suratkeluar);
+                $referral->update($request->all());
+     
+                $referral->save();
+     
+                 // flash()->success('Referral Agent was successfully created');
+     
+                 return redirect('/referralagent/index')->with("sukses", "Data Agent Code Internal Berhasil Diubah");
+             }  
+             else if($request->referral_for == 3){
+                 $referral = \App\Referral_Ext::find($id_suratkeluar);
+                 $referral->update($request->all());
+                 $name = DB::table('regencies_new')->where('name', $referral->regencies)->pluck('initials');
+                 $id=$referral->id;
+     
+                 $id2 = Referral_Ext::select(DB::raw('max(id) as id_max'))->where("referral_for", "=", "3")->first();
+                 $id2 = (int)$id2->id_max;
+                 
+                 // $create_form=Referral_Ext::where('id',$id)
+                 // ->update([
+                 // 'id' => $id2
+                 // ]);
+                 
+     
+                 $addNol = '';
+                 // $id3 = Product_Masuk::select(DB::raw('max(max_id) as id_max2'))->where("jenis_kategori", "=", "1")->first();
+                 // $id3 = (int)$id2->id_max2 + 1;
+     
+                 if (strlen($id2) == 1) {
+                     $addNol = "000$id2";
+                 } elseif (strlen($id2) == 2) {
+                     $addNol = "00$id2";
+                 } elseif (strlen($id2 == 3)) {
+                     $addNol = "0$id2";
+                 }
+     
+                 // $no_asset = $created_date->format('Y');
+                 //no urut akhir
+                 $noticket1="A-"."$name[0]-"."$addNol";
+                 // dd($noticket1);
+                 
+                 
+                 $create_form1=Referral_Agent::where('id',$id)
+                     ->update([
+                     'referral_code' => $noticket1
+                 ]);
+     
+                 // dd($create_form1);
+                 $referral->save();
+     
+                 // flash()->success('Referral Agent Ext was successfully created');
+     
+                 return redirect('/referralagent/index')->with("sukses", "Data Agent Code Internal Berhasil Diubah");
+         }
         }
-        return redirect('suratkeluar/index') ->with('sukses','Data Surat Keluar Berhasil Diedit');
     }
 
     //function untuk hapus
     public function delete($id_suratkeluar)
     {
-        $suratkeluar=\App\SuratKeluar::find($id_suratkeluar);
+        $suratkeluar=\App\Referral_Agent::find($id_suratkeluar);
         $suratkeluar->delete();
-        return redirect('suratkeluar/index') ->with('sukses','Data Surat Keluar Berhasil Dihapus');
+        return redirect('/referralagent/index') ->with('sukses','Data Agent Code Internal Berhasil Dihapus');
     }
 
      //Function Untuk Agenda Surat keluar

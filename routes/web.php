@@ -16,6 +16,14 @@ Route::get('/login','AuthController@login')->name('login');
 Route::post('/postlogin','AuthController@postlogin');
 Route::get('/logout','AuthController@logout');
 
+Route::group(['prefix' => 'api'], function () {
+    Route::get('dashboard', 'Api\DashboardController@index');
+    Route::get('members', 'Api\MembersController@index');
+    Route::get('ref-promo', 'ApiController@GetAllReferralPromo');
+    Route::get('ref-agent', 'ApiController@GetAllReferralAgent');
+    Route::get('ref-agentext', 'ApiController@GetAllReferralAgentExt');
+});
+
 Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
 
     Route::get('/', function () {
@@ -43,10 +51,10 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
     Route::get('/referral/index','ReferralController@index');
     Route::get('/referral/create','ReferralController@create');
     Route::post('/referral/tambah','ReferralController@tambah');
-    Route::get('/json-lantai', 'ReferralController@lantai')->name('jsonLantai');
     Route::get('/referral/{id}/edit','ReferralController@edit');
     Route::post('/referral/{id}/update','ReferralController@update');
     Route::get('/referral/{id}/delete','ReferralController@delete');
+    Route::get('/json-lantai', 'ReferralController@lantai')->name('jsonLantai');
     Route::get('/suratmasuk/{id}/tampil','SuratMasukController@tampil');
     Route::get('viewAlldownloadfile','SuratMasukController@downfunc');
     Route::get('/suratmasuk/{id}/edit','SuratMasukController@edit');

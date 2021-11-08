@@ -17,50 +17,63 @@
             </ul>
         </div>
         @endif
-        <form action="/suratkeluar/{{$suratkeluar->id}}/update" method="POST" enctype="multipart/form-data">
-            <h3><i class="nav-icon fas fa-envelope my-1 btn-sm-1"></i> Edit Surat Keluar</h3>
+        <form action="/referralagent/{{$suratkeluar->id}}/update" method="POST" enctype="multipart/form-data">
+            <h3><i class="nav-icon fas fa-envelope my-1 btn-sm-1"></i> Edit Referral Code</h3>
             <hr>
             {{csrf_field()}}
             <div class="row">
                 <div class="col-6">
-                    <label for="nomorsurat">Nomor Surat</label>
-                    <input name="no_surat" type="text" class="form-control bg-light" id="nomorsurat"
-                        placeholder="Nomor Surat" value="{{$suratkeluar->no_surat}}" required>
-                    <label for="asalsurat">Tujuan Surat</label>
-                    <input name="tujuan_surat" type="text" class="form-control bg-light" id="tujuansurat"
-                        placeholder="Tujuan Surat" value="{{$suratkeluar->tujuan_surat}}" required>
-                    <label for="isisurat">Isi Ringkas</label>
-                    <textarea name="isi" class="form-control bg-light" id="isisurat" rows="3"
-                        placeholder="Isi Ringkas Surat Keluar" value="{{$suratkeluar->isi}}"
-                        required>{{$suratkeluar->isi}}</textarea>
-                    <label for="kode">Kode Klasifikasi</label>
-                    <select name="kode" class="custom-select my-1 mr-sm-2 bg-light" id="kode"
-                        value="{{$suratkeluar->kode}}" required>
-                        <option selected>{{$suratkeluar->kode}}</option>
-                        @foreach($data_klasifikasi as $klasifikasi)
-                        <option value="{{$klasifikasi->kode}}">{{$klasifikasi->nama}} ( {{$klasifikasi->kode}} )
-                        </option>
-                        @endforeach
+                    <label for="nomorsurat">Referral For</label>
+                    <select readonly name="referral_for" value="" id="referral_for" data-live-search=true class="form-control selectpicker show-tick show-menu-arrow">
+                        @if($suratkeluar->referral_for == 2)
+                        <option value="{{$suratkeluar->referral_for}}" selected>Agent Code Internal</option>
+                        <option value=1
+                            {{ old('referral_for') == 1 ? 'selected' : '' }}>
+                            Promo Code</option>
+                        <option value=2
+                            {{ old('referral_for') == 2 ? 'selected' : '' }}>Agent Code Internal</option>
+                        @else
+                        <option value="">Select Referral For</option>
+                        <option value=1
+                            {{ old('referral_for') == 1 ? 'selected' : '' }}>
+                            Promo Code</option>
+                        <option value=2
+                            {{ old('referral_for') == 2 ? 'selected' : '' }}>Agent Code Internal</option>
+                        <option value=3
+                            {{ old('referral_for') == 3 ? 'selected' : '' }}>Agent Code External</option>
+                            @endif
                     </select>
+                    <label for="tglcatat" style="margin-top:10px;">Start Date</label>
+                    <input value="{{$suratkeluar->start_date}}" name="start_date" type="date" class="form-control bg-light"
+                        id="tglcatat" required>
+                    <label for="isisurat" style="margin-top:10px;">Description</label>
+                    <textarea name="description" class="form-control bg-light" id="description" rows="3"
+                        placeholder="Fill description" required>{{$suratkeluar->description}}</textarea>
                 </div>
                 <div class="col-6">
-                    <label for="tglsurat">Tanggal Surat</label>
-                    <input name="tgl_surat" type="date" class="form-control bg-light" id="tglsurat"
-                        value="{{$suratkeluar->tgl_surat}}" required>
-                    <label for="tglditerima">Tanggal Catat</label>
-                    <input name="tgl_catat" type="date" class="form-control bg-light" id="tglcatat"
-                        value="{{$suratkeluar->tgl_catat}}" required>
-                    <label for="keterangan">Keterangan</label>
-                    <input name="keterangan" type="text" class="form-control bg-light" id="keterangan"
-                        placeholder="Keterangan" value="{{$suratkeluar->keterangan}}" required>
-                    <div class="form-group">
+                    <div id="referralfree">
+                        <label for="tglsurat">Referral Code</label>
+                        <input value="{{$suratkeluar->referral_code}}" name="referral_code" type="text" class="form-control bg-light"
+                            id="referral_code" placeholder="Referral Code">
+                        </div>
+                        <label for="tglcatat" style="margin-top:10px;">End Date</label>
+                    <input value="{{$suratkeluar->end_date}}" name="end_date" type="date" class="form-control bg-light"
+                        id="tglcatat" required>
+                        <label for="status" style="margin-top:10px;">Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value=1>Active</option>
+                        <option value=2>Non Active</option>
+                    </select>
+                    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    {{-- <div class="form-group">
                         <label for="exampleFormControlFile1">File</label>
                         <input name="filekeluar" type="file" class="form-control-file" id="exampleFormControlFile1"
                             value="{{$suratkeluar->filekeluar}}">
                         <small id="exampleFormControlFile1" class="text-warning">
                             Pastikan file anda ( jpg,jpeg,png,doc,docx,pdf ) !!!
                         </small>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

@@ -20,13 +20,13 @@
                         <!-- small box -->
                         <div class="small-box bg-light">
                             <div class="inner">
-                                <h3>{{DB::table('suratmasuk')->count()}}</h3>
-                                <p>Surat Masuk</p>
+                                <h3>{{DB::table('referral')->count()}}</h3>
+                                <p>Referral Promo <br> Code</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-envelope-open-text"></i>
                             </div>
-                            <a href="/suratmasuk/index" class="small-box-footer bg-orange">Lihat Detail <i
+                            <a href="/referral/index" class="small-box-footer bg-orange">Lihat Detail <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -35,13 +35,13 @@
                         <!-- small box -->
                         <div class="small-box bg-light">
                             <div class="inner">
-                                <h3>{{DB::table('suratkeluar')->count()}}</h3>
-                                <p>Surat Keluar</p>
+                                <h3>{{DB::table('referral_agent')->count()}}</h3>
+                                <p>Referral Agent <br> Internal Code</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-envelope"></i>
                             </div>
-                            <a href="/suratkeluar/index" class="small-box-footer bg-orange">Lihat Detail <i
+                            <a href="/referralagent/index" class="small-box-footer bg-orange">Lihat Detail <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -49,13 +49,13 @@
                         <!-- small box -->
                         <div class="small-box bg-light">
                             <div class="inner">
-                                <h3>{{DB::table('klasifikasi')->count()}}</h3>
-                                <p>Klasifikasi</p>
+                                <h3>{{DB::table('referral_ext')->count()}}</h3>
+                                <p>Referral Agent <br> External Code</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-layer-group"></i>
                             </div>
-                            <a href="/klasifikasi/index" class="small-box-footer bg-orange">Lihat Detail <i
+                            <a href="/referralext/index" class="small-box-footer bg-orange">Lihat Detail <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         <div class="small-box bg-light">
                             <div class="inner">
                                 <h3>{{DB::table('users')->count()}}</h3>
-                                <p>Pengguna</p>
+                                <p>Management <br> Pengguna</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-user"></i>

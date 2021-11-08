@@ -17,14 +17,14 @@
             </ul>
         </div>
         @endif
-        <form action="/suratkeluar/{{$suratkeluar->id}}/update" method="POST" enctype="multipart/form-data">
-            <h3><i class="nav-icon fas fa-envelope my-1 btn-sm-1"></i> Edit Surat Keluar</h3>
+        <form action="/referralext/{{$suratkeluar->id}}/update" method="POST" enctype="multipart/form-data">
+            <h3><i class="nav-icon fas fa-envelope my-1 btn-sm-1"></i> Edit Referral Code</h3>
             <hr>
             {{csrf_field()}}
             <div class="row">
                 <div class="col-6">
-                    <label for="nomorsurat">Referal For</label>
-                    <select name="referral_for" value="" id="referral_for" data-live-search=true class="form-control selectpicker show-tick show-menu-arrow">
+                    <label for="nomorsurat">Referral For</label>
+                    <select readonly name="referral_for" value="" id="referral_for" data-live-search=true class="form-control selectpicker show-tick show-menu-arrow">
                         @if($suratkeluar->referral_for == 3)
                         <option value="{{$suratkeluar->referral_for}}" selected>Agent Code External</option>
                         <option value=1
