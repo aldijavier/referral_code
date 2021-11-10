@@ -12,7 +12,7 @@
             </ul>
         </div>
         @endif
-        <form action="/referral/tambah" method="POST" enctype="multipart/form-data">
+        <form action="/referral/referral/tambah" method="POST" enctype="multipart/form-data">
             <h3><i class="nav-icon fas fa-envelope my-1 btn-sm-1"></i> Generate Referral Code</h3>
             <hr>
             {{csrf_field()}}

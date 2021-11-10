@@ -17,7 +17,7 @@
             </ul>
         </div>
         @endif
-        <form action="/referral/{{$suratkeluar->id}}/update" method="POST" enctype="multipart/form-data">
+        <form action="/referral/referral/{{$suratkeluar->id}}/update" method="POST" enctype="multipart/form-data">
             <h3><i class="nav-icon fas fa-envelope my-1 btn-sm-1"></i> Edit Referral Code</h3>
             <hr>
             {{csrf_field()}}
