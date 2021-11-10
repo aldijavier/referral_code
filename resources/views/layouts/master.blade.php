@@ -90,7 +90,7 @@
                with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link">
+                            <a href="/referral/dashboard" class="nav-link">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Beranda
