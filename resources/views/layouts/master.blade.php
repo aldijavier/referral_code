@@ -107,25 +107,25 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/referral/create" class="nav-link">
+                                    <a href="/referral/referral/create" class="nav-link">
                                         <i class="far fa-envelope nav-icon"></i>
                                         <p>Generate Referral Code</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/referral/index" class="nav-link">
+                                    <a href="/referral/referral/index" class="nav-link">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Management Code Promo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/referralagent/index" class="nav-link">
+                                    <a href="/referral/referralagent/index" class="nav-link">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Management Agent Internal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/referralext/index" class="nav-link">
+                                    <a href="/referral/referralext/index" class="nav-link">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Management Agent External Promo</p>
                                     </a>

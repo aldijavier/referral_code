@@ -2,7 +2,7 @@
  
 namespace App\Traits;
 use Illuminate\Http\Request;
-use App\auditLog;
+use App\AuditLog;
  
 trait AuditLogsTrait {
     public function auditLogs($username,$ipAddress,$location,$access_from,$activity)
