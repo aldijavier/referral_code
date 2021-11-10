@@ -79,7 +79,7 @@
             </div>
             <hr>
             <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-save"></i> SIMPAN</button>
-            <a class="btn btn-danger btn-sm" href="/suratkeluar/index" role="button"><i class="fas fa-undo"></i>
+            <a class="btn btn-danger btn-sm" href="/referral/referral/index" role="button"><i class="fas fa-undo"></i>
                 BATAL</a>
         </form>
     </div>
