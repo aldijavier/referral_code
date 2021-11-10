@@ -13,7 +13,7 @@ class AuthController extends Controller
     use AuditLogsTrait;
     public function login()
     {
-        return redirect('http://localhost:8000/signout');
+        return redirect('https://stagingsysdev.nap.net.id/sso/signout');
     }
 
     public function postlogin(Request $request, $q)
@@ -52,7 +52,7 @@ class AuthController extends Controller
                 return redirect()->action('DashboardController@index');
                 }
         } else
-        return redirect('http://localhost:8000/signout');
+        return redirect('https://stagingsysdev.nap.net.id/sso/signout');
     }
 
     public function logout()
@@ -67,7 +67,7 @@ class AuthController extends Controller
         //dd($access_from);
         $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $email_user=auth()->user()->email;
-        return redirect('http://localhost:8000/portal/'.$email_user);
+        return redirect('https://stagingsysdev.nap.net.id/sso/portal/'.$email_user);
     }
 
 }
