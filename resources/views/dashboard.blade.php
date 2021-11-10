@@ -26,8 +26,8 @@
                             <div class="icon">
                                 <i class="nav-icon fas fa-envelope-open-text"></i>
                             </div>
-                            <a href="/referral/index" class="small-box-footer bg-orange">Lihat Detail <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/referral/index" class="small-box-footer bg-blue"><span style="color:white">Lihat Detail </span> <i
+                                    class="fas fa-arrow-circle-right text-white"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -41,8 +41,8 @@
                             <div class="icon">
                                 <i class="nav-icon fas fa-envelope"></i>
                             </div>
-                            <a href="/referralagent/index" class="small-box-footer bg-orange">Lihat Detail <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/referralagent/index" class="small-box-footer bg-blue"><span style="color:white">Lihat Detail </span> <i
+                                    class="fas fa-arrow-circle-right text-white"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
@@ -55,8 +55,8 @@
                             <div class="icon">
                                 <i class="nav-icon fas fa-layer-group"></i>
                             </div>
-                            <a href="/referralext/index" class="small-box-footer bg-orange">Lihat Detail <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/referralext/index" class="small-box-footer bg-blue"><span style="color:white">Lihat Detail </span> <i
+                                    class="fas fa-arrow-circle-right text-white"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -71,8 +71,8 @@
                             <div class="icon">
                                 <i class="nav-icon fas fa-user"></i>
                             </div>
-                            <a href="{{ route('pengguna.index') }}" class="small-box-footer bg-orange">Lihat Detail <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('pengguna.index') }}" class="small-box-footer bg-blue"><span style="color:white">Lihat Detail </span> </span><i
+                                    class="fas fa-arrow-circle-right text-white"></i></a>
                         </div>
                     </div>
                     @endif

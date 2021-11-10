@@ -7,9 +7,12 @@ use App\Referral_Agent;
 use App\Referral_Ext;
 use Illuminate\Http\Request;
 use DB;
+use App\Traits\AuditLogsTrait;
+use Browser;
 
 class ApiController extends Controller
 {
+    use AuditLogsTrait;
     const block_priority = -999;
     const unblock_priority = 0;
     const groupname_blocked = 'daloRADIUS-Disabled-Users';

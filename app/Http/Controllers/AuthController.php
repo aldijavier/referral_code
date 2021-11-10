@@ -4,27 +4,70 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\AuditLogsTrait;
+use App\User;
+use Browser;
 
 class AuthController extends Controller
 {
+    use AuditLogsTrait;
     public function login()
     {
-        return view('auths.login');
+        return redirect('http://localhost:8000/signout');
     }
 
-    public function postlogin(Request $request)
+    public function postlogin(Request $request, $q)
     {
-        $cre = $request->only('email','password');
-        if (Auth::attempt($cre)) {
-            return redirect('/dashboard');
+        $email =base64_decode($q);
+        $password='-';
+        // $cre = $request->only('email','password');
+        $credentials = [
+
+            'email' => $email,
+
+            'password' => $password
+
+        ];
+        $cekuser_status=User::where('email',$email)->first();
+        if(Auth::attempt($credentials)){
+            //Audit Log
+            //update last login
+                //update last login
+                $update_lastlogin=User:: where('email',$email)
+                ->update([
+                    'last_login' => now(),
+                    'login_counter' => $cekuser_status->login_counter+1,
+                ]);
+
+                if($update_lastlogin){
+                //Audit Log
+                $username= auth()->user()->email; 
+                $ipAddress=$_SERVER['REMOTE_ADDR'];
+                $location='0';
+                $access_from=Browser::browserName();
+                $activity='Login';
+
+                //dd($access_from);
+                $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
+                return redirect()->action('DashboardController@index');
+                }
         } else
-        return redirect()->back()->with('sukses','Email atau Password Salah!');
+        return redirect('http://localhost:8000/signout');
     }
 
     public function logout()
     {
-        Auth::logout();
-        return redirect('/login');
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Logout';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
+        $email_user=auth()->user()->email;
+        return redirect('http://localhost:8000/portal/'.$email_user);
     }
 
 }

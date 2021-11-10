@@ -8,22 +8,53 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Excel;
 use App\Instansi;
+use App\Traits\AuditLogsTrait;
+use Browser;
 
 class ReferralExtController extends Controller
 {
-    public function index()
+    use AuditLogsTrait;
+    public function index(Request $request)
     {
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Dashboard Referral Agent External';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $referral = \App\Referral_Ext::all();
-        return view('referral_ext.index', ['referral' => $referral]);
+        $drp_placeholder = $this->drpPlaceholder($request);
+        return view('referral_ext.index', ['referral' => $referral], ['drp_placeholder' => $drp_placeholder]);
     }
 
     //function untuk masuk ke view Tambah
     public function create()
     {
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Create Referral Agent External';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $data_klasifikasi = \App\Klasifikasi::all();
         return view('suratkeluar/create',['data_klasifikasi'=> $data_klasifikasi]);
     }
 
+    private function drpPlaceholder(Request $request)
+    {
+        if ($request->has('drp_start') and $request->has('drp_end')) {
+            return $request->drp_start.' - '.$request->drp_end;
+        }
+
+        return 'Select daterange filter';
+    }
+    
     //function untuk tambah
     public function tambah (Request $request)
     {
@@ -47,6 +78,15 @@ class ReferralExtController extends Controller
        $suratkeluar->filekeluar  = $fileName;
        $suratkeluar->users_id = Auth::id();
        $suratkeluar->save();
+       //Audit Log
+       $username= auth()->user()->email; 
+       $ipAddress=$_SERVER['REMOTE_ADDR'];
+       $location='0';
+       $access_from=Browser::browserName();
+       $activity='Menambahkan Referral Agent External';
+
+       //dd($location);
+       $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
        return redirect('/suratkeluar/index')->with("sukses", "Data Surat Keluar Berhasil Ditambahkan");
     }
 
@@ -77,6 +117,15 @@ class ReferralExtController extends Controller
     {
         $data_klasifikasi = \App\Province::all();
         $suratkeluar = \App\Referral_Ext::find($id_suratkeluar);
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Edit Halaman Referral Agent External';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return view('referral_ext/edit',['suratkeluar'=>$suratkeluar],['data_klasifikasi'=>$data_klasifikasi]);
     }
     public function update (Request $request, $id_suratkeluar)
@@ -151,7 +200,15 @@ class ReferralExtController extends Controller
      
                  // dd($create_form1);
                  $referral->save();
-     
+                 //Audit Log
+                $username= auth()->user()->email; 
+                $ipAddress=$_SERVER['REMOTE_ADDR'];
+                $location='0';
+                $access_from=Browser::browserName();
+                $activity='Update Referral Agent External';
+
+                //dd($location);
+                $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
                  // flash()->success('Referral Agent Ext was successfully created');
      
                  return redirect('/referralext/index')->with("sukses", "Data Agent Code External Berhasil Diubah");
@@ -174,6 +231,15 @@ class ReferralExtController extends Controller
     {
         $suratkeluar=\App\Referral_Ext::wherefind($id_suratkeluar);
         $suratkeluar->delete();
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Delete Referral Agent External';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return redirect('/referralext/index') ->with('sukses','Promo Code Agent External Berhasil Dihapus');
     }
 

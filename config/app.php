@@ -148,6 +148,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
 
         /*
@@ -162,6 +164,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // Stevebauman\Location\LocationServiceProvider::class,
+        hisorange\BrowserDetect\ServiceProvider::class,
 
     ],
 
@@ -213,7 +217,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
-    ],
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        // 'Location' => Stevebauman\Location\Facades\Location::class,
+        'Browser' => \hisorange\BrowserDetect\Facade::class,
+    ],  
 
 ];

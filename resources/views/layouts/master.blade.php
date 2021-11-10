@@ -22,6 +22,20 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
+    {{-- <!-- gymie -->
+	<script src="{{ URL::asset('js/gymie.js') }}" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			gymie.loadcounter();
+			gymie.loadprogress();
+			gymie.loaddatepicker();
+			gymie.loaddaterangepicker();
+			gymie.loadbsselect();
+		});
+	
+	</script> --}}
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -215,6 +229,12 @@
                                     <a href="{{ route('pengguna.index') }}" class="nav-link">
                                         <i class="fas fa-users-cog nav-icon"></i>
                                         <p>Manajemen User </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('audit.index') }}" class="nav-link">
+                                        <i class="fas fa-users-cog nav-icon"></i>
+                                        <p>Audit Log </p>
                                     </a>
                                 </li>
                             </ul>

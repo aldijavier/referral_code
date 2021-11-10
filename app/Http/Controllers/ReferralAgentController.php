@@ -7,11 +7,23 @@ use PDF;
 use Illuminate\Support\Facades\Auth;
 use Excel;
 use App\Instansi;
+use App\Traits\AuditLogsTrait;
+use Browser;
 
 class ReferralAgentController extends Controller
 {
+    use AuditLogsTrait;
     public function index()
     {
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Dashboard Referral Agent Internal';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $referral = \App\Referral_Agent::all();
         return view('referral_agent.index', ['referral' => $referral]);
     }
@@ -20,6 +32,15 @@ class ReferralAgentController extends Controller
     public function create()
     {
         $data_klasifikasi = \App\Klasifikasi::all();
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Membuat Referral Agent Internal';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return view('suratkeluar/create',['data_klasifikasi'=> $data_klasifikasi]);
     }
 
@@ -46,6 +67,15 @@ class ReferralAgentController extends Controller
        $suratkeluar->filekeluar  = $fileName;
        $suratkeluar->users_id = Auth::id();
        $suratkeluar->save();
+       //Audit Log
+       $username= auth()->user()->email; 
+       $ipAddress=$_SERVER['REMOTE_ADDR'];
+       $location='0';
+       $access_from=Browser::browserName();
+       $activity='Menambahkan Referral Agent Internal';
+
+       //dd($location);
+       $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
        return redirect('/suratkeluar/index')->with("sukses", "Data Surat Keluar Berhasil Ditambahkan");
     }
 
@@ -76,6 +106,15 @@ class ReferralAgentController extends Controller
     {
         $data_klasifikasi = \App\Province::all();
         $suratkeluar = \App\Referral_Agent::find($id_suratkeluar);
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Mengakses Halaman Edit Referral Agent Internal Code';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return view('referral_agent/edit',['suratkeluar'=>$suratkeluar],['data_klasifikasi'=>$data_klasifikasi]);
     }
     public function update (Request $request, $id_suratkeluar)
@@ -97,16 +136,45 @@ class ReferralAgentController extends Controller
              // $plan->updatedBy()->associate(Auth::user());
      
              $referral->save();
-     
+                
+             //Audit Log
+            $username= auth()->user()->email; 
+            $ipAddress=$_SERVER['REMOTE_ADDR'];
+            $location='0';
+            $access_from=Browser::browserName();
+            $activity='Mengubah Referral Code';
+
+            //dd($location);
+            $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
+
              return redirect('/referral/index')->with("sukses", "Data Promo Code Berhasil Ditambahkan");
      
              return redirect('referral/index');
              } else if($request->referral_for == 2){
                 $referral = \App\Referral_Agent::find($id_suratkeluar);
                 $referral->update($request->all());
-     
+                
+                //Audit Log
+                $username= auth()->user()->email; 
+                $ipAddress=$_SERVER['REMOTE_ADDR'];
+                $location='0';
+                $access_from=Browser::browserName();
+                $activity='Mengubah Referral Agent Internal Code';
+
+                //dd($location);
+                $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
+
                 $referral->save();
-     
+                
+                //Audit Log
+                $username= auth()->user()->email; 
+                $ipAddress=$_SERVER['REMOTE_ADDR'];
+                $location='0';
+                $access_from=Browser::browserName();
+                $activity='Mengedit Referral Agent Internal Code';
+
+                //dd($location);
+                $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
                  // flash()->success('Referral Agent was successfully created');
      
                  return redirect('/referralagent/index')->with("sukses", "Data Agent Code Internal Berhasil Diubah");
@@ -164,6 +232,15 @@ class ReferralAgentController extends Controller
     {
         $suratkeluar=\App\Referral_Agent::find($id_suratkeluar);
         $suratkeluar->delete();
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Menghapus Referral Agent Internal Code';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return redirect('/referralagent/index') ->with('sukses','Data Agent Code Internal Berhasil Dihapus');
     }
 

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Traits\AuditLogsTrait;
+use Browser;
 use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
 {
+    use AuditLogsTrait;
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +18,15 @@ class PenggunaController extends Controller
      */
     public function index(User $pengguna)
     {
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Daftar User';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $data_pengguna = $pengguna->all();
         return view('pengguna.index', compact('data_pengguna'));
     }
@@ -26,6 +38,15 @@ class PenggunaController extends Controller
      */
     public function create()
     {
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Create User';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return view('pengguna.create');
     }
 
@@ -48,6 +69,15 @@ class PenggunaController extends Controller
             'password' => Hash::make($request->input('password')),
             'role' => $request->role,
         ]);
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Membuat Akses User';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
 
         return redirect()->route('pengguna.index')->with('sukses','Data Pengguna Berhasil Disimpan');
     }
@@ -72,6 +102,15 @@ class PenggunaController extends Controller
     public function edit($id)
     {
         $data_pengguna= User::findorfail($id);
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Edit User';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return view('pengguna.edit', compact('data_pengguna'));
     }
 
@@ -100,6 +139,16 @@ class PenggunaController extends Controller
 
         $pengguna->update($data_pengguna);
 
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Mengedit Akses User';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
+
         return redirect()->route('pengguna.index')->with('sukses','Data Pengguna Berhasil Di Update');
     }
 
@@ -114,7 +163,15 @@ class PenggunaController extends Controller
         try {
             $pengguna = User::findorfail($id);
             $pengguna->delete();
+            //Audit Log
+            $username= auth()->user()->email; 
+            $ipAddress=$_SERVER['REMOTE_ADDR'];
+            $location='0';
+            $access_from=Browser::browserName();
+            $activity='Delete User';
 
+            //dd($location);
+            $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
             return redirect()->route('pengguna.index')->with('sukses','Data Berhasil di Hapus');
         } catch (\Illuminate\Database\QueryException $ex) {
             return redirect()->back()->with('sukses','Maaf, Masih ada data yang terpaut dengan user ini.');

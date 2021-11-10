@@ -16,6 +16,8 @@ Route::get('/login','AuthController@login')->name('login');
 Route::post('/postlogin','AuthController@postlogin');
 Route::get('/logout','AuthController@logout');
 
+Route::get('/redirect-referral/{q}', 'AuthController@postlogin');
+
 Route::group(['prefix' => 'api'], function () {
     Route::get('dashboard', 'Api\DashboardController@index');
     Route::get('members', 'Api\MembersController@index');
@@ -137,4 +139,5 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
 Route::group(['middleware' => ['auth','checkRole:admin']], function () {
     Route::resource('/instansi','InstansiController');
     Route::resource('/pengguna','PenggunaController');
+    Route::resource('/audit','AuditLogController');
 });
