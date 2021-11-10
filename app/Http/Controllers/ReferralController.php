@@ -86,7 +86,7 @@ class ReferralController extends Controller
         //dd($location);
         $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
 
-        return redirect('/referral/index')->with("sukses", "Data Promo Code Berhasil Ditambahkan");
+        return redirect()->action('ReferralController@index')->with("sukses", "Data Promo Code Berhasil Ditambahkan");
 
         return redirect('referral/index');
         } else if($request->referral_for == 2){
@@ -104,8 +104,8 @@ class ReferralController extends Controller
 
             //dd($location);
             $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
-
-            return redirect('/referral_agent/index')->with("sukses", "Data Agent Code Internal Berhasil Ditambahkan");
+            
+            return redirect()->action('ReferralAgentController@index')->with("sukses", "Data Agent Code Internal Berhasil Ditambahkan");
         }  
         else if($request->referral_for == 3){
             // $referral = new Referral_Ext($request->all());
@@ -160,7 +160,7 @@ class ReferralController extends Controller
 
             // flash()->success('Referral Agent Ext was successfully created');
 
-            return redirect('/referralext/index')->with("sukses", "Data Agent Code External Berhasil Ditambahkan");
+            return redirect()->action('ReferralExtController@index')->with("sukses", "Data Agent Code External Berhasil Ditambahkan");
     }
        // end new
     //    $suratkeluar = new SuratKeluar();
@@ -247,7 +247,7 @@ class ReferralController extends Controller
 
              $referral->save();
      
-             return redirect('/referral/index')->with("sukses", "Data Promo Code Berhasil Diubah");
+             return redirect()->action('ReferralController@index')->with("sukses", "Data Promo Code Berhasil Diubah");
      
              return redirect('referral/index');
              } else if($request->referral_for == 2){
@@ -303,7 +303,7 @@ class ReferralController extends Controller
      
                  // flash()->success('Referral Agent Ext was successfully created');
      
-                 return redirect('/referralagent/index')->with("sukses", "Data Agent Code Internal Berhasil Diubah");
+                 return redirect()->action('ReferralController@index')->with("sukses", "Data Agent Code Internal Berhasil Diubah");
          }
         }
     }
@@ -322,7 +322,7 @@ class ReferralController extends Controller
 
         //dd($location);
         $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
-        return redirect('/referral/index') ->with('sukses','Data Promo Code Berhasil Dihapus');
+        return redirect()->action('ReferralController@index')->with('sukses','Data Promo Code Berhasil Dihapus');
     }
 
      //Function Untuk Agenda Surat keluar

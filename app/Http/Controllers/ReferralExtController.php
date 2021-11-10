@@ -211,7 +211,8 @@ class ReferralExtController extends Controller
                 $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
                  // flash()->success('Referral Agent Ext was successfully created');
      
-                 return redirect('/referralext/index')->with("sukses", "Data Agent Code External Berhasil Diubah");
+                //  return redirect('/referralext/index')->with("sukses", "Data Agent Code External Berhasil Diubah");
+                 return redirect()->action('ReferralExtController@index')->with("sukses", "Data Agent Code External Berhasil Diubah");
          }
         }
     }
@@ -240,7 +241,7 @@ class ReferralExtController extends Controller
 
         //dd($location);
         $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
-        return redirect('/referralext/index') ->with('sukses','Promo Code Agent External Berhasil Dihapus');
+        return redirect()->action('ReferralExtController@index')->with('sukses','Promo Code Agent External Berhasil Dihapus');
     }
 
      //Function Untuk Agenda Surat keluar
