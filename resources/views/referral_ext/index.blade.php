@@ -180,7 +180,7 @@
             </script>
             <div>
                 <div class="col">
-                    <a class="btn btn-primary btn-sm my-1 mr-sm-1" href="/referral/create" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
+                    <a class="btn btn-primary btn-sm my-1 mr-sm-1" href="/referral/referral/create" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
                     <br>
                 </div>
             </div>
