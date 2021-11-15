@@ -8,19 +8,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('adminlte/fontawesome-free/css/all.min.css')}}">
-    {{-- <link rel="stylesheet" href="/adminlte/fontawesome-free/css/all.min.css"> --}}
+    <link rel="stylesheet" href="/referral/adminlte/fontawesome-free/css/all.min.css">
     <!-- Ekko Lightbox -->
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.css')}}">
-    <link rel="stylesheet" href="/adminlte/plugins/ekko-lightbox/ekko-lightbox.css">
+    <link rel="stylesheet" href="/referral/adminlte/plugins/ekko-lightbox/ekko-lightbox.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{asset('adminlte/css/adminlte.min.css')}}">
-    {{-- <link rel="stylesheet" href="/adminlte/css/adminlte.min.css"> --}}
+    <link rel="stylesheet" href="/referral/adminlte/css/adminlte.min.css">
     <!-- DataTable -->
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
-    {{-- <link rel="stylesheet" href="/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css"> --}}
+    <link rel="stylesheet" href="/referral/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -94,7 +90,7 @@
                with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="{{route('dashboard')}}" class="nav-link">
+                            <a href="/referral/dashboard" class="nav-link">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Beranda
@@ -111,25 +107,25 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('referral_create')}}" class="nav-link">
+                                    <a href="/referral/referral/create" class="nav-link">
                                         <i class="far fa-envelope nav-icon"></i>
                                         <p>Generate Referral Code</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('ref_index')}}" class="nav-link">
+                                    <a href="/referral/referral/index" class="nav-link">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Management Code Promo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('refagent_index')}}" class="nav-link">
+                                    <a href="/referral/referralagent/index" class="nav-link">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Management Agent Internal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('refext_index')}}" class="nav-link">
+                                    <a href="/referral/referralext/index" class="nav-link">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Management Agent External Promo</p>
                                     </a>
@@ -275,28 +271,20 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    {{-- <script src="/referral/adminlte/jquery/jquery.min.js"></script> --}}
-    <script src="{{asset('adminlte/jquery/jquery.min.js')}}"></script>
+    <script src="/referral/adminlte/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    {{-- <script src="/referral/adminlte/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-    <script src="{{asset('adminlte/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="/referral/adminlte/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    {{-- <script src="/referral/adminlte/js/adminlte.min.js"></script> --}}
-    <script src="{{asset('adminlte/js/adminlte.min.js')}}"></script>
+    <script src="/referral/adminlte/js/adminlte.min.js"></script>
     <!-- Ekko Lightbox -->
-    {{-- <script src="/referral/adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js"></script> --}}
-    <script src="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
+    <script src="/referral/adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
     <!-- Filterizr-->
-    {{-- <script src="/referral/adminlte/plugins/filterizr/jquery.filterizr.min.js"></script> --}}
-    <script src="{{asset('adminlte/plugins/filterizr/jquery.filterizr.min.js')}}"></script>
+    <script src="/referral/adminlte/plugins/filterizr/jquery.filterizr.min.js"></script>
     <!-- Data Table -->
-    {{-- <script src="/referral/adminlte/plugins/datatables/jquery.dataTables.js"></script> --}}
-    <script src="{{asset('adminlte/plugins/datatables/jquery.dataTables.js')}}"></script>
-    {{-- <script src="/referral/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script> --}}
-    <script src="{{asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+    <script src="/referral/adminlte/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/referral/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('adminlte/js/demo.js')}}"></script>
-    {{-- <script src="/referral/adminlte/js/demo.js"></script> --}}
+    <script src="/referral/adminlte/js/demo.js"></script>
     <!-- page script -->
     <script>
         $(function () {

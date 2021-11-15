@@ -26,13 +26,25 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('ref-agentext', 'ApiController@GetAllReferralAgentExt');
 });
 
+
+//Export
+Route::get('/tickets/rfo/{id}', 'App\Http\Controllers\ExportController@rfo')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::get('/tickets/rfo_maintenance/{id}', 'App\Http\Controllers\ExportController@rfoMaintenance')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::post('/tickets/export', 'ExportController@export');
+Route::post('/tickets/exportkeluar', 'ExportController@exportkeluar');
+Route::post('/tickets/exportreturn', 'ExportController@exportreturn');
+Route::post('/tickets/exportLogAssign', 'App\Http\Controllers\ExportController@exportLogAssign')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::post('/tickets_internal/exportLogAssign', 'App\Http\Controllers\ExportController@exportLogAssign')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::post('/tickets/export-bulk-Assign', 'App\Http\Controllers\ExportController@exportBulkAssign')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+//End export
+
 Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
 
     Route::get('/', function () {
         return view('/dashboard');
     });
 
-    Route::get('/dashboard','DashboardController@index');
+    Route::get('/dashboard','DashboardController@index')->name('dashboard');
 
     Route::get('/suratmasuk','SuratMasukController@index');
     Route::get('/suratmasuk/index','SuratMasukController@index');
@@ -48,10 +60,11 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
     Route::get('/suratmasuk.agendamasukdownload_excel', 'SuratMasukController@agendamasukdownload_excel')->name('suratmasuk.downloadexcel');
     Route::get('/suratmasuk/galeri','SuratMasukController@galeri');
 
+
     // referral 
     Route::get('/referral','ReferralController@index');
-    Route::get('/referral/index','ReferralController@index');
-    Route::get('/referral/create','ReferralController@create');
+    Route::get('/referral/index','ReferralController@index')->name('ref_index');
+    Route::get('/referral/create','ReferralController@create')->name('referral_create');
     Route::post('/referral/tambah','ReferralController@tambah');
     Route::get('/referral/{id}/edit','ReferralController@edit');
     Route::post('/referral/{id}/update','ReferralController@update');
@@ -69,7 +82,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
 
     // referral agent
     Route::get('/referralagent','ReferralAgentController@index');
-    Route::get('/referralagent/index','ReferralAgentController@index');
+    Route::get('/referralagent/index','ReferralAgentController@index')->name('refagent_index');
     Route::get('/referralagent/create','ReferralAgentController@create');
     Route::post('/referralagent/tambah','ReferralAgentController@tambah');
     Route::get('/referralagent/{id}/edit','ReferralAgentController@edit');
@@ -87,7 +100,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
 
     // referral ext
     Route::get('/referralext','ReferralExtController@index');
-    Route::get('/referralext/index','ReferralExtController@index');
+    Route::get('/referralext/index','ReferralExtController@index')->name('refext_index');
     Route::get('/referralext/create','ReferralExtController@create');
     Route::post('/referralext/tambah','ReferralExtController@tambah');
     Route::get('/referralext/{id}/edit','ReferralExtController@edit');

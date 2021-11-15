@@ -22,6 +22,47 @@
                 <hr>
             </div>
         </div>
+        <div class="box-header">
+            <button type="button" class="btn btn-primary" id="btnExportExcel" data-toggle="modal" data-target="#myModalExport" data-backdrop="static" data-keyboard="false">
+                <i class="fa fa-table" aria-hidden="true"></i>
+                <span class="nav-text">
+                    Export to Excel with date
+                </span>
+            </button>
+        </div><br>
+        <!-- Modal Export-->
+    <div class="modal fade" id="myModalExport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><b>Export to Excel</b>
+                    <button type="button" class="close" data-dismiss="modal" onclick="resetExport()" aria-label="Close">
+                        <span aria-hidden="true" style="color:black"><i class="fa fa-times"></i></span>
+                    </button>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('/tickets/exportreturn')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label>From</label>
+                            <input type="date" id="date_start" name="date_start" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Until</label>
+                            <input type="date" id="date_finish" name="date_finish" class="form-control">
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnResetModalExport" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-file-text"></i> Export Now</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
         {{-- <div>
             <div class="col">
                 <a class="btn btn-primary btn-sm my-1 mr-sm-1" href="{{ route('pengguna.create') }}" role="button"><i
