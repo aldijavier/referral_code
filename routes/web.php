@@ -38,6 +38,8 @@ Route::post('/tickets_internal/exportLogAssign', 'App\Http\Controllers\ExportCon
 Route::post('/tickets/export-bulk-Assign', 'App\Http\Controllers\ExportController@exportBulkAssign')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
 //End export
 
+Route::post('searchreferral', 'ReferralController@searchDate')->name('report');
+
 Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
 
     Route::get('/', function () {

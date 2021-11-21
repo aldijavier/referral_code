@@ -13,6 +13,37 @@
                 <hr>
             </div>
             </div>
+            {{-- action="{{route('search')}}" --}}
+            <form action="{{route('report')}}" method ="POST">
+                @csrf
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="form-group row">
+                                <label for="date" class="col-form-label col-sm-2">Start Date</label>
+                                <div class="col-sm-3">
+                                    <input type="date" class="form-control input-sm" id="start_date" name="start_date" required/>
+                                </div>
+                                <label for="date" class="col-form-label col-sm-2">End Date</label>
+                                <div class="col-sm-3">
+                                    <input type="date" class="form-control input-sm" id="end_date" name="end_date" required/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="date" class="col-form-label col-sm-2">Other</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control input-sm" id="other" name="other"placeholder="Search other..." />
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn" name="search" title="Search"><img src="https://img.icons8.com/android/24/000000/search.png"/></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </form>
             <div>
                 <div class="col">
                     <a class="btn btn-primary btn-sm my-1 mr-sm-1" href="/referral/referral/create" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
