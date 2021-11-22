@@ -28,6 +28,22 @@ class ReferralAgentController extends Controller
         return view('referral_agent.index', ['referral' => $referral]);
     }
 
+    public function searchDate(Request $request){
+        // $referral = \App\Referral::all();
+        $fromDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $referral = \App\Referral_Agent::select()
+        ->where('start_date', '>=', $fromDate)
+        ->where('end_date', '<=', $endDate)
+        ->get();
+        // $query = DB::table('referral')
+        //     ->select('referral.referral_code', 'referral.referral_for', 'referral.start_date', 'referral.end_date',
+        //     'referral.description', 'referral.status')
+        //     ->get();
+        // dd($referral);
+        return view('referral.index', ['referral' => $referral]);
+    }
+
     //function untuk masuk ke view Tambah
     public function create()
     {

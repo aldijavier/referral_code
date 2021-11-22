@@ -39,7 +39,9 @@ Route::post('/tickets/export-bulk-Assign', 'App\Http\Controllers\ExportControlle
 //End export
 
 Route::post('searchreferral', 'ReferralController@searchDate')->name('report');
-
+Route::post('searchreferralagent', 'ReferralAgentController@searchDate')->name('reportagent');
+Route::post('searchreferralext', 'ReferralExtController@searchDate')->name('reportext');
+Route::get('/promocodeapi', 'ChartController@chart')->name('promocodeapi');
 Route::group(['middleware' => ['auth','checkRole:admin,petugas']], function () {
 
     Route::get('/', function () {

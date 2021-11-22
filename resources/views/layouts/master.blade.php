@@ -118,20 +118,49 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('ref_index')}}" class="nav-link">
-                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <i class="fa fa-asterisk nav-icon"></i>
                                         <p>Management Code Promo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('refagent_index')}}" class="nav-link">
-                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <i class="fa fa-asterisk nav-icon"></i>
                                         <p>Management Agent Internal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('refext_index')}}" class="nav-link">
-                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <i class="fa fa-asterisk nav-icon"></i>
                                         <p>Management Agent External Promo</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-mail-bulk"></i>
+                                <p>
+                                    Chart
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('promocodeapi')}}" class="nav-link">
+                                        <i class="fa fa-asterisk nav-icon"></i>
+                                        <p>Data and Chart Code Promo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('refagent_index')}}" class="nav-link">
+                                        <i class="fa fa-asterisk nav-icon"></i>
+                                        <p>Data and Chart Agent Internal</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('refext_index')}}" class="nav-link">
+                                        <i class="fa fa-asterisk nav-icon"></i>
+                                        <p>Data and Chart Agent External Promo</p>
                                     </a>
                                 </li>
                             </ul>
@@ -153,7 +182,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="/suratkeluar/index" class="nav-link">
-                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <i class="fa fa-asterisk nav-icon"></i>
                                         <p>Surat Keluar</p>
                                     </a>
                                 </li>
@@ -176,7 +205,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="/suratkeluar/agenda" class="nav-link">
-                                        <i class="far fa-envelope-open nav-icon"></i>
+                                        <i class="fa fa-asterisk nav-icon"></i>
                                         <p>Agenda Surat Keluar</p>
                                     </a>
                                 </li>
