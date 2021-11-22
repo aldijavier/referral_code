@@ -72,8 +72,14 @@
                         @endforeach
                     </tbody>
                 </table>
-                </div>
+                </div><br><br>
+            <div style="height: 1000px; width: 100%">
+                <h1 class="text-center text-bold">Chart Reedem Promo Code</h1>
+                {!! $chart->container() !!}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+                {!! $chart->script() !!}
             </div>
+        </div>
         </div>
     </section>
  @endsection
