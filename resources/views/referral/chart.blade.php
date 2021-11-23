@@ -52,7 +52,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Kode Negara</th>
                             <th scope="col">Nama Negara</th>
-                            <th scope="col">Positive Covid</th>
+                            <th scope="col">Terinfeksi Covid</th>
                             <th scope="col">Berhasil Sembuh</th>
                             <th scope="col">Meninggal</th>
                         </tr>

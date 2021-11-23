@@ -18,13 +18,7 @@ Route::get('/logout','AuthController@logout');
 
 Route::get('/redirect-referral/{q}', 'AuthController@postlogin');
 
-Route::group(['prefix' => 'api'], function () {
-    Route::get('dashboard', 'Api\DashboardController@index');
-    Route::get('members', 'Api\MembersController@index');
-    Route::get('ref-promo', 'ApiController@GetAllReferralPromo');
-    Route::get('ref-agent', 'ApiController@GetAllReferralAgent');
-    Route::get('ref-agentext', 'ApiController@GetAllReferralAgentExt');
-});
+
 
 
 //Export
