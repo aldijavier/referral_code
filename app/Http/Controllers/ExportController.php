@@ -14,9 +14,12 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TicketExport;
 use App\Exports\ProductKeluarExport;
 use App\Exports\ProductReturnExport;
+use App\Traits\AuditLogsTrait;
+use Browser;
 
 class ExportController extends Controller
 {
+    use AuditLogsTrait;
     public function rfo($id)
     {
     	$ticket = Ticket::where('tickets.id',$id)
@@ -74,6 +77,15 @@ class ExportController extends Controller
 
     public function exportreturn(Request $request)
     {
+        //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Export Audit Log';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         // dd($request);
         $request->validate([
             'date_start' => 'required|date',

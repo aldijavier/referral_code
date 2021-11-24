@@ -56,6 +56,15 @@ class ApiController extends Controller
 
     public function GetAllReferralPromo()
     {
+        //Audit Log
+        $username= 'User External'; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses API Referral Promo';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         try{
             $query =  Referral::where('status', '=', 1)->get();
             return response()->json([
@@ -74,6 +83,15 @@ class ApiController extends Controller
 
     public function GetAllReferralAgent()
     {
+         //Audit Log
+         $username= 'User External';
+         $ipAddress=$_SERVER['REMOTE_ADDR'];
+         $location='0';
+         $access_from=Browser::browserName();
+         $activity='Akses API Referral Agent Internal';
+ 
+         //dd($location);
+         $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         // ../api/rad-alluser
         try{
             $query =  Referral_Agent::where('status', '=', 1)->get();
@@ -93,6 +111,15 @@ class ApiController extends Controller
     
     public function GetAllReferralAgentExt()
     {
+        //Audit Log
+        $username= 'User External'; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses API Referral Agent External';
+
+        //dd($location);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         // ../api/rad-alluser
         try{
             $query =  Referral_Ext::where('status', '=', 1)->get();
